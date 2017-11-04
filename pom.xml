@@ -571,7 +571,7 @@
     <commons.componentid>lang3</commons.componentid>
     <commons.module.name>org.apache.commons.lang3</commons.module.name>
     <!-- Current 3.x release series -->
-    <commons.release.version>3.6</commons.release.version>
+    <commons.release.version>3.7</commons.release.version>
     <commons.release.desc>(Java 7.0+)</commons.release.desc>
     <!-- Previous 2.x release series -->
     <commons.release.2.version>2.6</commons.release.2.version>
@@ -591,7 +591,7 @@
     <checkstyle.plugin.version>2.17</checkstyle.plugin.version>
 
     <!-- JMH Benchmark related properties, version, target compiler and name of the benchmarking uber jar. -->
-    <jmh.version>1.17.4</jmh.version>
+    <jmh.version>1.19</jmh.version>
     <uberjar.name>benchmarks</uberjar.name>
   </properties>
 
@@ -724,7 +724,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.7</version>
+        <version>3.8</version>
         <configuration>
           <targetJdk>${maven.compiler.target}</targetJdk>
         </configuration>
