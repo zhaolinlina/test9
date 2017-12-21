@@ -105,7 +105,7 @@ public class BasicThreadFactory implements ThreadFactory {
     private final Integer priority;
 
     /** Stores the daemon status flag. */
-    private final Boolean daemonFlag;
+    private final Boolean daemon;
 
     /**
      * Creates a new instance of {@code ThreadFactoryImpl} and configures it
@@ -122,7 +122,7 @@ public class BasicThreadFactory implements ThreadFactory {
 
         namingPattern = builder.namingPattern;
         priority = builder.priority;
-        daemonFlag = builder.daemonFlag;
+        daemon = builder.daemon;
         uncaughtExceptionHandler = builder.exceptionHandler;
 
         threadCounter = new AtomicLong();
@@ -159,7 +159,7 @@ public class BasicThreadFactory implements ThreadFactory {
      * @return the daemon flag
      */
     public final Boolean getDaemonFlag() {
-        return daemonFlag;
+        return daemon;
     }
 
     /**
@@ -215,25 +215,25 @@ public class BasicThreadFactory implements ThreadFactory {
      * the wrapped thread factory. It initializes the thread according to the
      * options set for this factory.
      *
-     * @param t the thread to be initialized
+     * @param thread the thread to be initialized
      */
-    private void initializeThread(final Thread t) {
+    private void initializeThread(final Thread thread) {
 
         if (getNamingPattern() != null) {
             final Long count = Long.valueOf(threadCounter.incrementAndGet());
-            t.setName(String.format(getNamingPattern(), count));
+            thread.setName(String.format(getNamingPattern(), count));
         }
 
         if (getUncaughtExceptionHandler() != null) {
-            t.setUncaughtExceptionHandler(getUncaughtExceptionHandler());
+            thread.setUncaughtExceptionHandler(getUncaughtExceptionHandler());
         }
 
         if (getPriority() != null) {
-            t.setPriority(getPriority().intValue());
+            thread.setPriority(getPriority().intValue());
         }
 
         if (getDaemonFlag() != null) {
-            t.setDaemon(getDaemonFlag().booleanValue());
+            thread.setDaemon(getDaemonFlag().booleanValue());
         }
     }
 
@@ -267,7 +267,7 @@ public class BasicThreadFactory implements ThreadFactory {
         private Integer priority;
 
         /** The daemon flag. */
-        private Boolean daemonFlag;
+        private Boolean daemon;
 
         /**
          * Sets the {@code ThreadFactory} to be wrapped by the new {@code
@@ -310,7 +310,7 @@ public class BasicThreadFactory implements ThreadFactory {
          * @return a reference to this {@code Builder}
          */
         public Builder daemon(final boolean f) {
-            daemonFlag = Boolean.valueOf(f);
+            daemon = Boolean.valueOf(f);
             return this;
         }
 
@@ -354,7 +354,7 @@ public class BasicThreadFactory implements ThreadFactory {
             exceptionHandler = null;
             namingPattern = null;
             priority = null;
-            daemonFlag = null;
+            daemon = null;
         }
 
         /**
